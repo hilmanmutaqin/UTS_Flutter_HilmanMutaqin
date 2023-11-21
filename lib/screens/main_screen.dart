@@ -58,7 +58,7 @@ class _MainScreenState extends State<MainScreen> {
       case 4:
         return ProfileScreen();
       default:
-        return Container(); 
+        return Container();
     }
   }
 }
