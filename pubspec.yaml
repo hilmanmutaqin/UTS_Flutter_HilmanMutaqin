@@ -30,6 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    
+  flutter_svg: ^2.0.9
   
 
 
@@ -39,7 +41,11 @@ dependencies:
   convex_bottom_bar: ^3.2.0
   contactus: ^1.2.3
   profile: ^0.0.1
-  url_launcher: ^6.2.1
+  url_launcher: ^6.0.9
+  google_fonts: ^6.1.0
+  dio: ^5.4.0
+  intl: ^0.19.0
+  datetime_picker_formfield: ^2.0.1
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +75,9 @@ flutter:
   - asset/icon_profil.jpg
   - asset/icon_ig.png
   - asset/icon_github.png
+  - asset/icon_quran_bottom.png
+  - asset/svgs/
+  - asset/datas/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

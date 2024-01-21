@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:uts_hilmanmutaqin/globals.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,6 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: background,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -21,11 +24,8 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Center(
                 child: Text(
                   'Aplikasi Pembelajaran',
-                  style: TextStyle(
-                    color: Colors.indigoAccent,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w700, color: Colors.white , fontSize: 16)
                 ),
               ),
             ),
@@ -47,12 +47,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.only(bottom: 70),
                   child: Center(
                     child: Text(
-                      'Buku dan Juz Amma',
-                      style: TextStyle(
-                        color: Colors.indigoAccent,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      'Buku dan Al-quran',
+                      style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w700, color: Colors.white , fontSize: 16)
                     ),
                   ),
                 ),
@@ -67,7 +64,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
                     'Copyright by: Hilman Mutaqin',
-                    style: TextStyle(fontSize: 12),
+                     style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w100, color: Colors.white , fontSize: 8),
                   ),
                 ),
               ),

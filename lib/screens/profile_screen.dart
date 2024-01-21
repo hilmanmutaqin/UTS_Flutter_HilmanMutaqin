@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:uts_hilmanmutaqin/globals.dart'; // Assuming you have a file for globals
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -9,6 +11,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  // Method to launch a URL
   _launchURL(String url) async {
     // ignore: deprecated_member_use
     if (await canLaunch(url)) {
@@ -22,6 +25,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: background,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -36,6 +40,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
+                color: Colors.white
               ),
             ),
             SizedBox(height: 20),
@@ -43,6 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               'NPM : 21552011107',
               style: TextStyle(
                 fontSize: 18,
+                color: Colors.white
               ),
             ),
             SizedBox(height: 10),
@@ -50,6 +56,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               'Mahasiswa Teknik Informatika',
               style: TextStyle(
                 fontSize: 18,
+                color: Colors.white
               ),
             ),
             SizedBox(height: 10),
@@ -57,9 +64,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               'Sekolah Tinggi Teknologi Bandung',
               style: TextStyle(
                 fontSize: 18,
+                color: Colors.white
               ),
             ),
             SizedBox(height: 30),
+            // Instagram Button
             ElevatedButton.icon(
               onPressed: () {
                 _launchURL('https://www.instagram.com/hilman_mutaqin4');
@@ -69,12 +78,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 width: 30,
                 height: 30,
               ),
-              label: Text('Instagram'),
+              label: Text('Instagram' , style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w300, color: Colors.white,fontSize: 12)),
               style: ElevatedButton.styleFrom(
                 primary: Colors.indigoAccent,
               ),
             ),
             SizedBox(height: 20),
+            // GitHub Button
             ElevatedButton.icon(
               onPressed: () {
                 _launchURL('https://github.com/hilmanmutaqin');
@@ -84,7 +95,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 width: 30,
                 height: 30,
               ),
-              label: Text('GitHub'),
+              label: Text('GitHub' , style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w300, color: Colors.white,fontSize: 12)),
               style: ElevatedButton.styleFrom(
                 primary: Colors.indigoAccent,
               ),

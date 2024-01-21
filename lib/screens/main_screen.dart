@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:uts_hilmanmutaqin/screens/add_screen.dart';
 import 'package:uts_hilmanmutaqin/screens/books_screen.dart';
 import 'package:uts_hilmanmutaqin/screens/home_screen.dart';
@@ -21,7 +22,10 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.indigo[800],
-        title: Center(child: Text('Aplikasi Uts - Hilman Mutaqin')),
+        title: Center(
+            child: Text('Aplikasi Uts - Hilman Mutaqin',
+                style: GoogleFonts.poppins(
+                    fontWeight: FontWeight.w300, color: Colors.white,fontSize: 12))),
       ),
       body: Center(
         child: _buildScreenForIndex(_currentIndex),
@@ -32,7 +36,7 @@ class _MainScreenState extends State<MainScreen> {
           TabItem(icon: Icons.home, title: 'Home'),
           TabItem(icon: Icons.map, title: 'Buku'),
           TabItem(icon: Icons.add, title: 'Add'),
-          TabItem(icon: Icons.message, title: 'Juz Amma'),
+          TabItem(icon: Icons.message, title: 'Al-quran'),
           TabItem(icon: Icons.people, title: 'Profile'),
         ],
         onTap: (int i) {
@@ -50,7 +54,7 @@ class _MainScreenState extends State<MainScreen> {
       case 0:
         return HomeScreen();
       case 1:
-        return BooksScreen();
+        return DataHafalanScreen();
       case 2:
         return AddScreen();
       case 3:
