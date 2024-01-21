@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final surah = surahFromJson(jsonString);
-
 import 'dart:convert';
 import 'package:uts_hilmanmutaqin/models/ayat.dart';
 

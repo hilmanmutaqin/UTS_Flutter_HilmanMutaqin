@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:uts_hilmanmutaqin/globals.dart';
 import 'package:uts_hilmanmutaqin/models/model_hafalan.dart';
+import 'edit_hafalan_screen.dart'; 
 
 class DataHafalanScreen extends StatefulWidget {
   const DataHafalanScreen({Key? key}) : super(key: key);
@@ -47,16 +48,35 @@ class _DataHafalanScreenState extends State<DataHafalanScreen> {
     }
   }
 
+  Future<void> deleteHafalan(int index) async {
+    try {
+      final response = await Dio().delete(
+          'https://web1hilmanmutaqin.000webhostapp.com/API/hafalan.php',
+          data: {'id': hafalanList[index].id.toString()});
+
+      if (response.statusCode == 200) {
+        hafalanList.removeAt(index);
+      } else {
+        print('Failed to delete');
+      }
+    } catch (e) {
+      print('Error deleting record: $e');
+    } finally {
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: background,
       appBar: AppBar(
+        backgroundColor: background,
         title: Center(
           child: Text(
             'Data Hafalan',
             style: GoogleFonts.poppins(
-                color: background, fontWeight: FontWeight.w500, fontSize: 20),
+                color: Colors.white, fontWeight: FontWeight.w500, fontSize: 20),
           ),
         ),
       ),
@@ -71,9 +91,9 @@ class _DataHafalanScreenState extends State<DataHafalanScreen> {
                       title: Text(
                         hafalanList[index].namaSurah,
                         style: GoogleFonts.poppins(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16),
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16),
                       ),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,6 +118,56 @@ class _DataHafalanScreenState extends State<DataHafalanScreen> {
                                 color: Colors.white,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 12),
+                          ),
+                        ],
+                      ),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.edit),
+                            onPressed: () {
+                              // Navigate to the edit screen
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => EditHafalanScreen(
+                                    hafalan: hafalanList[index],
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.delete),
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text('Delete Confirmation'),
+                                    content: Text(
+                                        'Are you sure you want to delete this item?'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text('Cancel'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          // Call deleteHafalan function
+                                          deleteHafalan(index);
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text('Delete'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
                           ),
                         ],
                       ),

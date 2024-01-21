@@ -3,8 +3,8 @@ import 'package:intl/intl.dart';
 class ModelHafalan {
   final int id;
   final String namaSurah;
-  final String description;
-  final DateTime datetime;
+  late String description;
+  late DateTime datetime;
 
   ModelHafalan({
     required this.id,
@@ -28,5 +28,15 @@ class ModelHafalan {
       description: json['description'] as String,
       datetime: parsedDatetime,
     );
+  }
+
+  // Method to convert the object to a Map
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'nama_surah': namaSurah,
+      'description': description,
+      'datetime': DateFormat("yyyy-MM-dd HH:mm:ss").format(datetime),
+    };
   }
 }
