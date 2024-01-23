@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:dio/dio.dart'; // Import Dio package
 import 'package:uts_hilmanmutaqin/models/model_hafalan.dart';
 
 class EditHafalanScreen extends StatefulWidget {
@@ -83,19 +82,18 @@ class _EditHafalanScreenState extends State<EditHafalanScreen> {
                   widget.hafalan.description = description;
                   widget.hafalan.datetime = _dateFormat.parse(tanggal);
 
-                  Map<String, dynamic> data = widget.hafalan.toMap();
+                  Map<String, dynamic> data = {
+                    'description': description,
+                    'datetime': _dateFormat.format(widget.hafalan.datetime),
+                  };
 
-                  String jsonData = jsonEncode(data);
-
-                  Uri uri = Uri.parse(
-                      'https://web1hilmanmutaqin.000webhostapp.com/API/hafalan.php');
-                  var response = await http.put(
-                    uri,
-                    headers: {"Content-Type": "application/json"},
-                    body: jsonData,
+                  Dio dio = Dio();
+                  Response response = await dio.post(
+                    'https://web1hilmanmutaqin.000webhostapp.com/API/edithafalan.php?id=${widget.hafalan.id}',
+                    data: FormData.fromMap(data),
                   );
 
-                  print('Response: ${response.body}');
+                  print('Response: ${response.data}');
 
                   if (response.statusCode == 200) {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -115,7 +113,6 @@ class _EditHafalanScreenState extends State<EditHafalanScreen> {
                     );
                   }
                 } catch (e) {
-                  // Handle different types of exceptions here
                   print('Error: $e');
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
