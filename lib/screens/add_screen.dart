@@ -48,24 +48,24 @@ class _AddScreenState extends State<AddScreen> {
           children: [
             TextField(
               controller: _namaSuratController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Nama Surat',
                 labelStyle: TextStyle(color: Colors.black),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextField(
               controller: _jumlahAyatController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Description',
                 labelStyle: TextStyle(color: Colors.black),
               ),
               keyboardType: TextInputType.text,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextField(
               controller: _tanggalController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Tanggal',
                 labelStyle: TextStyle(color: Colors.black),
               ),
@@ -83,15 +83,13 @@ class _AddScreenState extends State<AddScreen> {
                 }
               },
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () async {
-                // Ambil nilai dari TextField
                 String namaSurah = _namaSuratController.text;
                 String description = _jumlahAyatController.text;
                 String tanggal = _tanggalController.text;
 
-                // Buat objek ModelHafalan dari nilai TextField
                 ModelHafalan hafalan = ModelHafalan(
                   namaSurah: namaSurah,
                   description: description,
@@ -118,7 +116,7 @@ class _AddScreenState extends State<AddScreen> {
 
                 if (response.statusCode == 200) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text('Hafalan berhasil ditambahkan'),
                       backgroundColor:
                           Colors.green, 
@@ -130,7 +128,7 @@ class _AddScreenState extends State<AddScreen> {
                   _tanggalController.clear();
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text('Gagal menambahkan hafalan'),
                       backgroundColor:
                           Colors.red, 

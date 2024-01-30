@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:uts_hilmanmutaqin/globals.dart';
 import 'package:uts_hilmanmutaqin/models/model_hafalan.dart';
 import 'edit_hafalan_screen.dart';
 
@@ -85,14 +84,14 @@ class _DataHafalanScreenState extends State<DataHafalanScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: background,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: background,
+        backgroundColor: Colors.white,
         title: Center(
           child: Text(
             'Data Hafalan',
             style: GoogleFonts.poppins(
-              color: Colors.white,
+              color: Colors.indigo[800],
               fontWeight: FontWeight.w500,
               fontSize: 20,
             ),
@@ -100,106 +99,103 @@ class _DataHafalanScreenState extends State<DataHafalanScreen> {
         ),
       ),
       body: isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : error.isNotEmpty
               ? Center(child: Text(error))
               : hafalanList.isEmpty
-                  ? Center(child: Text('Tidak ada data'))
+                  ? const Center(child: Text('Tidak ada data'))
                   : ListView.builder(
-                      itemCount: hafalanList.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return ListTile(
-                          title: Text(
-                            hafalanList[index].namaSurah,
-                            style: GoogleFonts.poppins(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                            ),
-                          ),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'ID: ${hafalanList[index].id}',
-                                style: GoogleFonts.poppins(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 12,
-                                ),
-                              ),
-                              Text(
-                                'Deskripsi: ${hafalanList[index].description}',
-                                style: GoogleFonts.poppins(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 12,
-                                ),
-                              ),
-                              Text(
-                                'Waktu: ${DateFormat("yyyy-MM-dd HH:mm:ss").format(hafalanList[index].datetime)}',
-                                style: GoogleFonts.poppins(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ],
-                          ),
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                icon: Icon(Icons.edit),
-                                onPressed: () {
-                                  // Navigate to the edit screen
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => EditHafalanScreen(
-                                        hafalan: hafalanList[index],
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                              IconButton(
-                                icon: Icon(Icons.delete),
-                                onPressed: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        title: Text('Delete Confirmation'),
-                                        content: Text(
-                                          'Are you sure you want to delete this item?',
-                                        ),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            child: Text('Cancel'),
-                                          ),
-                                          TextButton(
-                                            onPressed: () {
-                                              // Call deleteHafalan function
-                                              deleteHafalan(index);
-                                              Navigator.pop(context);
-                                            },
-                                            child: Text('Delete'),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        );
-                      },
+  itemCount: hafalanList.length,
+  itemBuilder: (BuildContext context, int index) {
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: ListTile(
+        title: Text(
+          hafalanList[index].namaSurah,
+          style: GoogleFonts.poppins(
+            color: Colors.black87,
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
+          ),
+        ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Deskripsi: ${hafalanList[index].description}',
+              style: GoogleFonts.poppins(
+                color: Colors.black54,
+                fontWeight: FontWeight.w500,
+                fontSize: 12,
+              ),
+            ),
+            Text(
+              'Waktu: ${DateFormat("yyyy-MM-dd HH:mm:ss").format(hafalanList[index].datetime)}',
+              style: GoogleFonts.poppins(
+                color: Colors.black54,
+                fontWeight: FontWeight.w500,
+                fontSize: 12,
+              ),
+            ),
+          ],
+        ),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.edit),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EditHafalanScreen(
+                      hafalan: hafalanList[index],
                     ),
+                  ),
+                );
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.delete),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Delete Confirmation'),
+                      content: const Text(
+                        'Are you sure you want to delete this item?',
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            deleteHafalan(index);
+                            Navigator.pop(context);
+                          },
+                          child: const Text('Delete'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  },
+),
     );
   }
 }

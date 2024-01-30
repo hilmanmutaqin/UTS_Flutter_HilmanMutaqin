@@ -25,16 +25,18 @@ class _MainScreenState extends State<MainScreen> {
         title: Center(
             child: Text('Aplikasi Uts - Hilman Mutaqin',
                 style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w300, color: Colors.white,fontSize: 12))),
+                    fontWeight: FontWeight.w300,
+                    color: Colors.white,
+                    fontSize: 12))),
       ),
       body: Center(
         child: _buildScreenForIndex(_currentIndex),
       ),
       bottomNavigationBar: ConvexAppBar(
         backgroundColor: Colors.indigo[800],
-        items: [
+        items: const [
           TabItem(icon: Icons.home, title: 'Home'),
-          TabItem(icon: Icons.map, title: 'Buku'),
+          TabItem(icon: Icons.map, title: 'Hafalan'),
           TabItem(icon: Icons.add, title: 'Add'),
           TabItem(icon: Icons.message, title: 'Al-quran'),
           TabItem(icon: Icons.people, title: 'Profile'),
@@ -48,19 +50,19 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
-  // untuk menampilkan screen
+
   Widget _buildScreenForIndex(int index) {
     switch (index) {
       case 0:
-        return HomeScreen();
+        return const HomeScreen();
       case 1:
-        return DataHafalanScreen();
+        return const DataHafalanScreen();
       case 2:
-        return AddScreen();
+        return const AddScreen();
       case 3:
-        return ListScreen();
+        return const ListScreen();
       case 4:
-        return ProfileScreen();
+        return const ProfileScreen();
       default:
         return Container();
     }

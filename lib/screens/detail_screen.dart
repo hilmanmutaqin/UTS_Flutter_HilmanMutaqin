@@ -24,13 +24,13 @@ class DetailScreen extends StatelessWidget {
         initialData: null,
         builder: ((context, snapshot) {
           if (!snapshot.hasData) {
-            return Scaffold(
-              backgroundColor: background,
+            return const Scaffold(
+              backgroundColor: Colors.white,
             );
           }
           Surah surah = snapshot.data!;
           return Scaffold(
-            backgroundColor: background,
+            backgroundColor: Colors.white,
             appBar: _appBar(context: context, surah: surah),
             body: NestedScrollView(
               headerSliverBuilder: (context, innerBoxIsScrolled) => [
@@ -61,14 +61,14 @@ class DetailScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
               decoration: BoxDecoration(
-                  color: gray, borderRadius: BorderRadius.circular(10)),
+                  color: Colors.grey[300], borderRadius: BorderRadius.circular(10)),
               child: Row(
                 children: [
                   Container(
                     width: 27,
                     height: 27,
                     decoration: BoxDecoration(
-                        color: primary,
+                        color: Colors.indigo[800],
                         borderRadius: BorderRadius.circular(27 / 2)),
                     child: Center(
                         child: Text(
@@ -80,21 +80,21 @@ class DetailScreen extends StatelessWidget {
                   const Spacer(),
                   const Icon(
                     Icons.share_outlined,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                   const SizedBox(
                     width: 16,
                   ),
                   const Icon(
                     Icons.play_arrow_outlined,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                   const SizedBox(
                     width: 16,
                   ),
                   const Icon(
                     Icons.bookmark_outline,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                 ],
               ),
@@ -105,7 +105,7 @@ class DetailScreen extends StatelessWidget {
             Text(
               ayat.ar,
               style: GoogleFonts.amiri(
-                  color: Colors.white,
+                  color: Colors.black,
                   fontWeight: FontWeight.bold,
                   fontSize: 18),
               textAlign: TextAlign.right,
@@ -137,9 +137,9 @@ class DetailScreen extends StatelessWidget {
                       1
                     ],
                     colors: [
-                      Color(0xFFDF98FA),
-                      Color(0xFFB070FD),
-                      Color(0xFF9055FF)
+                      Color(0xFFC5CAE9),
+                      Color(0xFF7986CB),
+                      Color(0xFF283593)
                     ])),
           ),
           Positioned(
@@ -222,7 +222,7 @@ class DetailScreen extends StatelessWidget {
 
   AppBar _appBar({required BuildContext context, required Surah surah}) =>
       AppBar(
-        backgroundColor: background,
+        backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         elevation: 0,
         title: Row(children: [

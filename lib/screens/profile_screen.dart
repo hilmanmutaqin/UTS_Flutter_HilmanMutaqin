@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:uts_hilmanmutaqin/globals.dart'; // Assuming you have a file for globals
+import 'package:uts_hilmanmutaqin/globals.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+  const ProfileScreen({Key? key}) : super(key: key);
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -12,13 +12,57 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   // Method to launch a URL
-  _launchURL(String url) async {
-    // ignore: deprecated_member_use
-    if (await canLaunch(url)) {
-      // ignore: deprecated_member_use
-      await launch(url);
-    } else {
-      throw 'Tidak dapat membuka $url';
+  Future<void> _launchURL(String url) async {
+    try {
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw 'Could not launch $url';
+      }
+    } catch (e) {
+      print('Error launching URL: $e');
+
+    }
+  }
+
+ 
+  Future<void> _launchInstagram(String url) async {
+    
+    String instagramUrl = 'instagram://user?username=hilman_mutaqin4';
+    
+    String fallbackUrl = 'https://www.instagram.com/hilman_mutaqin4';
+
+    try {
+      
+      if (await canLaunch(instagramUrl)) {
+        await launch(instagramUrl);
+      } else {
+      
+        await launch(fallbackUrl);
+      }
+    } catch (e) {
+      print('Error launching Instagram: $e');
+    
+    }
+  }
+
+  Future<void> _launchGitHub(String url) async {
+    
+    String gitHubUrl = 'github://hilmanmutaqin';
+    
+    String fallbackUrl = 'https://github.com/hilmanmutaqin';
+
+    try {
+      
+      if (await canLaunch(gitHubUrl)) {
+        await launch(gitHubUrl);
+      } else {
+        
+        await launch(fallbackUrl);
+      }
+    } catch (e) {
+      print('Error launching GitHub: $e');
+      
     }
   }
 
@@ -30,73 +74,73 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               radius: 80,
               backgroundImage: AssetImage('asset/icon_profil.jpg'),
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Hilman Mutaqin',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.white
+                color: Colors.white,
               ),
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'NPM : 21552011107',
               style: TextStyle(
                 fontSize: 18,
-                color: Colors.white
+                color: Colors.white,
               ),
             ),
-            SizedBox(height: 10),
-            Text(
+            const SizedBox(height: 10),
+            const Text(
               'Mahasiswa Teknik Informatika',
               style: TextStyle(
                 fontSize: 18,
-                color: Colors.white
+                color: Colors.white,
               ),
             ),
-            SizedBox(height: 10),
-            Text(
+            const SizedBox(height: 10),
+            const Text(
               'Sekolah Tinggi Teknologi Bandung',
               style: TextStyle(
                 fontSize: 18,
-                color: Colors.white
+                color: Colors.white,
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             // Instagram Button
             ElevatedButton.icon(
               onPressed: () {
-                _launchURL('https://www.instagram.com/hilman_mutaqin4');
+                _launchInstagram('https://www.instagram.com/hilman_mutaqin4');
               },
               icon: Image.asset(
                 'asset/icon_ig.png',
                 width: 30,
                 height: 30,
               ),
-              label: Text('Instagram' , style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w300, color: Colors.white,fontSize: 12)),
+              label: Text('Instagram', style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w300, color: Colors.white, fontSize: 12)),
               style: ElevatedButton.styleFrom(
                 primary: Colors.indigoAccent,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             // GitHub Button
             ElevatedButton.icon(
               onPressed: () {
-                _launchURL('https://github.com/hilmanmutaqin');
+                _launchGitHub('https://github.com/hilmanmutaqin');
               },
               icon: Image.asset(
                 'asset/icon_github.png',
                 width: 30,
                 height: 30,
               ),
-              label: Text('GitHub' , style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w300, color: Colors.white,fontSize: 12)),
+              label: Text('GitHub', style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w300, color: Colors.white, fontSize: 12)),
               style: ElevatedButton.styleFrom(
                 primary: Colors.indigoAccent,
               ),

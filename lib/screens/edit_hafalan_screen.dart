@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:dio/dio.dart'; // Import Dio package
+import 'package:dio/dio.dart'; 
 import 'package:uts_hilmanmutaqin/models/model_hafalan.dart';
 
 class EditHafalanScreen extends StatefulWidget {
@@ -28,13 +28,13 @@ class _EditHafalanScreenState extends State<EditHafalanScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Hafalan'),
+        title: const Text('Edit Hafalan'),
         actions: [
           IconButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
           ),
         ],
       ),
@@ -45,16 +45,16 @@ class _EditHafalanScreenState extends State<EditHafalanScreen> {
           children: [
             TextField(
               controller: _descriptionController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Description',
                 labelStyle: TextStyle(color: Colors.black),
               ),
               keyboardType: TextInputType.text,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextField(
               controller: _tanggalController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Tanggal',
                 labelStyle: TextStyle(color: Colors.black),
               ),
@@ -72,7 +72,7 @@ class _EditHafalanScreenState extends State<EditHafalanScreen> {
                 }
               },
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () async {
                 try {
@@ -97,7 +97,7 @@ class _EditHafalanScreenState extends State<EditHafalanScreen> {
 
                   if (response.statusCode == 200) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                         content: Text('Data updated successfully'),
                         backgroundColor: Colors.green,
                       ),
@@ -106,7 +106,7 @@ class _EditHafalanScreenState extends State<EditHafalanScreen> {
                     Navigator.pop(context);
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                         content: Text('Failed to update data'),
                         backgroundColor: Colors.red,
                       ),
@@ -115,7 +115,7 @@ class _EditHafalanScreenState extends State<EditHafalanScreen> {
                 } catch (e) {
                   print('Error: $e');
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text('An error occurred. Please try again.'),
                       backgroundColor: Colors.red,
                     ),

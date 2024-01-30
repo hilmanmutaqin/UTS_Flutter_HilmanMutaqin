@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:uts_hilmanmutaqin/globals.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -13,23 +12,21 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: background,
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            // Tulisan "Aplikasi Pembelajaran" bold
             Padding(
               padding: const EdgeInsets.only(top: 110),
               child: Center(
                 child: Text(
                   'Aplikasi Pembelajaran',
                   style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w700, color: Colors.white , fontSize: 16)
+                    fontWeight: FontWeight.w700, color: Colors.indigo[800] , fontSize: 16)
                 ),
               ),
             ),
-            // Gambar Alquran
             Padding(
               padding: EdgeInsets.only(top: 5),
               child: Image.asset(
@@ -39,7 +36,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-            // Tulisan "Buku dan Juz Amma" bold dan di bagian bawah
             Expanded(
               child: Align(
                 alignment: Alignment.bottomCenter,
@@ -49,14 +45,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Text(
                       'Buku dan Al-quran',
                       style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w700, color: Colors.white , fontSize: 16)
+                    fontWeight: FontWeight.w700, color: Colors.indigo[800] , fontSize: 16)
                     ),
                   ),
                 ),
               ),
             ),
 
-            // Copyright
             Expanded(
               child: Align(
                 alignment: Alignment.bottomCenter,
@@ -65,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Text(
                     'Copyright by: Hilman Mutaqin',
                      style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w100, color: Colors.white , fontSize: 8),
+                    fontWeight: FontWeight.w300, color: Colors.black , fontSize: 10),
                   ),
                 ),
               ),
