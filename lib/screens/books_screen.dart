@@ -26,7 +26,8 @@ class _DataHafalanScreenState extends State<DataHafalanScreen> {
 
   Future<void> fetchHafalanData() async {
     try {
-      final response = await Dio().get('https://web1hilmanmutaqin.000webhostapp.com/API/hafalan.php');
+      final response = await Dio()
+          .get('https://web1hilmanmutaqin.000webhostapp.com/API/hafalan.php');
 
       if (response.statusCode == 200) {
         List<dynamic> data = response.data;
@@ -58,12 +59,13 @@ class _DataHafalanScreenState extends State<DataHafalanScreen> {
         data: {'id': hafalanList[index].id.toString()},
       );
 
-      print(response); // Log the response
+      print(response);
 
       if (response.statusCode == 200) {
         setState(() {
           hafalanList.removeAt(index);
         });
+        showSnackbar('Item deleted successfully');
       } else {
         showSnackbar('Failed to delete');
       }
